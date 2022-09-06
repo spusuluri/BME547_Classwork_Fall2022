@@ -31,4 +31,8 @@ def HDL_driver():
 def output_HDL_result(hdl_value, charac):
     print(" The results for an HDL value of {} is {}".format(hdl_value,charac))
 
+def input_LDL():
+    LDL_input = input("Enter the LDL value:")
+    return int(LDL_input)
+
 interface()
