@@ -68,4 +68,12 @@ def check_total_cholesterol(cholesterol_value):
     else:
         return "Normal"
 
+def total_cholesterol_driver():
+    total_cholesterol_value = input_total_cholesterol()
+    answer = check_total_cholesterol(total_cholesterol_value)
+    output_LDL_result(total_cholesterol_value,answer)
+
+def output_LDL_result(total_cholesterol_value, charac):
+    print(" The results for the total cholesterol value of {} is {}".format(total_cholesterol_value,charac))
+
 interface()
