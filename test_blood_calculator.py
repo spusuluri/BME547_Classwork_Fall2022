@@ -13,3 +13,10 @@ def test_check_LDL(LDL_value, expected):
     from blood_calculator import check_LDL
     answer = check_LDL(LDL_value)
     assert answer == expected
+
+@pytest.mark.parametrize("total_cholesterol_value, expected",[(240, "High"), (225, "Borderline High") , (100, "Normal")])
+
+def test_check_total_cholesterol(total_cholesterol_value, expected):
+    from blood_calculator import check_total_cholesterol
+    answer = check_total_cholesterol(total_cholesterol_value)
+    assert answer == expected
