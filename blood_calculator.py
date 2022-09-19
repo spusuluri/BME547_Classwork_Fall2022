@@ -79,4 +79,5 @@ def total_cholesterol_driver():
 def output_LDL_result(total_cholesterol_value, charac):
     print(" The results for the total cholesterol value of {} is {}".format(total_cholesterol_value,charac))
 
-interface()
+if __name__ == "__main__":
+    interface()
