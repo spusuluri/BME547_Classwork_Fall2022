@@ -10,7 +10,6 @@ import pytest
     ("22 pound", 10),
     ("22 lb, 50 kg", None),
     ("22", None),
-   # ("ten kg", 10)
     ])
 def test_parse_weight_input(input, expected):
     from weight_entry import parse_weight_input
