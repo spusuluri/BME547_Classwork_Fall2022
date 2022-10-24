@@ -41,5 +41,11 @@ def add_numbers_from_internet():
     return str(in_data['a'] + in_data['b'])
 
 
+@app.route("/add/<a>/<b>", methods=["GET"])
+def add_variable_url(a, b):
+    answer = int(a) + int(b)
+    return jsonify(answer)
+
+
 if __name__ == "__main__":
     app.run()
