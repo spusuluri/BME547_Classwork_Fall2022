@@ -1,4 +1,7 @@
 from flask import Flask, request, jsonify
+import logging
+from pymodm import connect, MongoModel, fields
+from database_definition import Patient
 
 """
 Database format
@@ -12,7 +15,6 @@ Database format
 }]
 
 """
-db = []
 app = Flask(__name__)
 
 
@@ -22,20 +24,17 @@ def server_on():
 
 
 def add_patient(patient_name, patient_id, blood_type):
-    new_patient = {
-        'name': patient_name,
-        'id': patient_id,
-        'blood_type': blood_type,
-        'test_name': [],
-        'test_result': []
-    }
-    db.append(new_patient)
+    new_patient = Patient(name=patient_name,
+                          id=patient_id,
+                          blood_type=blood_type)
+    added_patient = new_patient.save()
+    return added_patient
 
 
 def init_server():
-    add_patient("Ann Ables", 1, "A+")
-    add_patient("Bob Boyles", 2, "B+")
     # initialize logging
+    connect("mongodb+srv://bme547classwork:ZB7LM8nbrD6Vgs29@bme547"
+            ".s4vkcnr.mongodb.net/health_db?retryWrites=true&w=majority")
 
 
 @app.route('/new_patient', methods=["POST"])
