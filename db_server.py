@@ -33,7 +33,7 @@ def add_patient(patient_name, patient_id, blood_type):
 
 def init_server():
     # initialize logging
-    connect("mongodb+srv://bme547classwork:ZB7LM8nbrD6Vgs29@bme547"
+    connect("mongodb+srv://bme547classwork:ME7U27X5CyrMumuZ@bme547"
             ".s4vkcnr.mongodb.net/health_db?retryWrites=true&w=majority")
 
 
@@ -79,15 +79,17 @@ def add_test_worker(in_data):
     result = validate_new_test_info(in_data)
     if result is not True:
         return result, 400
-    add_test_info(in_data['id'], in_data['test_name'], in_data['test_result'])
-    return "Test added", 200
+    msg, status_code = add_test_info(in_data)
+    return msg, status_code
 
 
 def find_patient(patient_id):
-    for patient in db:
-        if patient["id"] == patient_id:
-            return patient
-    return False
+    from pymodm import errors as pymodm_errors
+    try:
+        found_patient = Patient.objects.raw({"_id": patient_id}).first()
+    except pymodm_errors.DoesNotExist:
+        return False
+    return found_patient
 
 
 def validate_new_test_info(in_data):
@@ -104,10 +106,15 @@ def validate_new_test_info(in_data):
     return True
 
 
-def add_test_info(patient_id, test_name, test_result):
-    patient = find_patient(patient_id)
-    patient['test_name'].append(test_name)
-    patient['test_result'].append(test_result)
+def add_test_info(in_data):
+    patient = find_patient(in_data["id"])
+    if patient is False:
+        return "Patient ID {} not found in database."\
+                   .format(in_data["id"]), 400
+    patient.test_name.append(in_data["test_name"])
+    patient.test_result.append(in_data["test_result"])
+    patient.save()
+    return "Successfully added test.", 200
 
 
 if __name__ == "__main__":
