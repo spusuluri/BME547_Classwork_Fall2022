@@ -33,8 +33,9 @@ def add_patient(patient_name, patient_id, blood_type):
 
 def init_server():
     # initialize logging
-    connect("mongodb+srv://bme547classwork:UqZB1uVntFpMWioG@bme547"
-            ".s4vkcnr.mongodb.net/health_db?retryWrites=true&w=majority")
+    connect("mongodb+srv://bme547classwork:UqZB1uVntFpMWioG"
+            "@bme547.s4vkcnr.mongodb.net/"
+            "health_db?retryWrites=true&w=majority")
 
 
 @app.route('/new_patient', methods=["POST"])
