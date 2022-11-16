@@ -100,7 +100,7 @@ def main_window():
     pil_image = Image.open("Git_headshot.jpg")
     pil_image = pil_image.resize((100, 100))
     tk_image = ImageTk.PhotoImage(pil_image)
-    image_label=ttk.Label(root, image=tk_image)
+    image_label = ttk.Label(root, image=tk_image)
     image_label.grid(column=1, row=8)
 
     root.after(1000, get_update_info)  # After 1000 ms, run the get_update_info
