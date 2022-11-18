@@ -1,11 +1,7 @@
-# Patient Health Database
-
-Author: Satya Pusuluri
-
-## Classwork and Assignments for this Class
+# BME 547 Classwork: Patient Health Database
 
 ## Purpose
-The code in this repository will run a patient health database. 
+The code in this repository will run a patient health database on a server and will transfer the database to MongoDB. 
 
 The code is written in Python.
 
@@ -24,16 +20,7 @@ The database will contains:
 1. LDL
 
 ## Future improvements
-* Add blood type
-
-### Task: 
-Write a function that takes the `db` variable as a parameter and prints out each patient information on a line, nicely
-formatted. 
-
-Write a function that takes the database and a patient id, have the function look throughout the database and return
-the patient who matches the id
-
-Write a function that takes the database, patient id, test name, and test value as parameters, and add those test
-results to the appropriate patient. 
+Future imporvements for this project include adding more features to the GUI in order to easy-to-use platform for users.
 
 ### Acknowledgements
+Dr. David Ward
